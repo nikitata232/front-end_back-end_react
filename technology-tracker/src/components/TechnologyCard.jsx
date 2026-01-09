@@ -1,18 +1,54 @@
+// src/components/TechnologyCard.jsx
+import { useState } from 'react';
+import TechnologyModal from './Technologymodal';
+import ProgressBar from './ProgressBar';
 import './TechnologyCard.css';
 
-function TechnologyCard({ tech, onStatusChange }) {
-  const handleClick = () => {
-    const statusOrder = ['not-started', 'in-progress', 'completed'];
-    const currentIndex = statusOrder.indexOf(tech.status);
-    const nextStatus = statusOrder[(currentIndex + 1) % statusOrder.length];
-    onStatusChange(tech.id, nextStatus);
+function TechnologyCard({ technology, onStatusChange, onNotesChange }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleStatusChange = (event) => {
+    onStatusChange(technology.id, event.target.value);
   };
 
+  const handleNotesChange = (newNotes) => {
+    onNotesChange(technology.id, newNotes);
+  };
+
+  // Преобразуем статус в процент для ProgressBar
+  let progress = 0;
+  if (technology.status === 'not-started') progress = 0;
+  else if (technology.status === 'in-progress') progress = 50;
+  else if (technology.status === 'completed') progress = 100;
+
   return (
-    <div className={`technology-card status-${tech.status}`} onClick={handleClick}>
-      <h3>{tech.title}</h3>
-      <p>{tech.description}</p>
-      <p>Статус: <strong>{tech.status}</strong></p>
+    <div className="technology-card">
+      <h3>{technology.title}</h3>
+      <p>{technology.description}</p>
+
+      <div className="status-group">
+        <label>
+          Статус:
+          <select value={technology.status} onChange={handleStatusChange}>
+            <option value="not-started">Не начинал</option>
+            <option value="in-progress">В процессе</option>
+            <option value="completed">Выполнено</option>
+          </select>
+        </label>
+      </div>
+
+      {/* Прогресс-бар */}
+      <ProgressBar progress={progress} />
+
+      <button onClick={() => setIsModalOpen(true)}>📋 Заметки</button>
+
+      {/* Модальное окно */}
+      <TechnologyModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        technology={technology}
+        onNotesChange={handleNotesChange}
+      />
     </div>
   );
 }

@@ -1,49 +1,43 @@
-.App {
-  max-width: 800px;
+.app {
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
 }
 
-h2 {
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.technologies-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
   margin-top: 20px;
 }
 
-button {
-  margin: 5px;
-  padding: 5px 10px;
+.technology-card {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 15px;
+  width: 200px;
   cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.progress-bar {
-  width: 100%;
-  height: 20px;
-  background-color: #eee;
-  border-radius: 10px;
-  margin: 10px 0;
+.technology-card:hover {
+  transform: translateY(-3px);
 }
 
-.progress {
-  height: 100%;
-  background-color: #45b7d1;
-  border-radius: 10px;
-  transition: width 0.3s ease;
-}
-
-.error {
-  color: red;
-  font-size: 0.9em;
-}
-
-.App {
-  font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.technology-list {
+.action-buttons {
   display: flex;
-  flex-direction: column;
   gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.action-buttons button {
+  padding: 6px 12px;
+  cursor: pointer;
 }
