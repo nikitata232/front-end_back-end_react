@@ -1,0 +1,18 @@
+.technology-card {
+  border: 2px solid #ccc;
+  border-left-width: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.technology-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.status-not-started { border-left-color: #ff6b6b; }
+.status-in-progress { border-left-color: #4ecdc4; }
+.status-completed { border-left-color: #45b7d1; }
