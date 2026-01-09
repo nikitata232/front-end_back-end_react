@@ -1,0 +1,29 @@
+.tech-card {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tech-card h3 {
+  margin: 0;
+}
+
+.tech-card .status {
+  font-weight: 600;
+}
+
+.tech-card.completed {
+  border-left: 6px solid #4caf50;
+}
+
+.tech-card.in-progress {
+  border-left: 6px solid #ff9800;
+}
+
+.tech-card.not-started {
+  border-left: 6px solid #f44336;
+}
