@@ -1,25 +1,18 @@
 import './TechnologyCard.css';
 
-function TechnologyCard({ title, description, status }) {
-  let statusText;
-  let statusClass;
-
-  if (status === 'completed') {
-    statusText = 'Завершено';
-    statusClass = 'completed';
-  } else if (status === 'in-progress') {
-    statusText = 'В процессе';
-    statusClass = 'in-progress';
-  } else {
-    statusText = 'Не начато';
-    statusClass = 'not-started';
-  }
+function TechnologyCard({ tech, onStatusChange }) {
+  const handleClick = () => {
+    const statusOrder = ['not-started', 'in-progress', 'completed'];
+    const currentIndex = statusOrder.indexOf(tech.status);
+    const nextStatus = statusOrder[(currentIndex + 1) % statusOrder.length];
+    onStatusChange(tech.id, nextStatus);
+  };
 
   return (
-    <div className={`tech-card ${statusClass}`}>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <span className="status">{statusText}</span>
+    <div className={`technology-card status-${tech.status}`} onClick={handleClick}>
+      <h3>{tech.title}</h3>
+      <p>{tech.description}</p>
+      <p>Статус: <strong>{tech.status}</strong></p>
     </div>
   );
 }
