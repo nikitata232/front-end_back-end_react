@@ -34,3 +34,16 @@ button {
   color: red;
   font-size: 0.9em;
 }
+
+.App {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.technology-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
