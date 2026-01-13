@@ -1,23 +1,46 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navigation from './components/Navigation';
+import React from 'react';
+import './styles/App.css'; // стили приложения
 
-import Home from './pages/Home';
-import TechnologyList from './pages/TechnologyList';
-import TechnologyDetail from './pages/TechnologyDetail';
-import AddTechnology from './pages/AddTechnology';
+// Импортируем кастомные хуки
+import useTechnologiesApi from './hooks/useTechnologies';
+
+// Импортируем компоненты
+import RoadmapImporter from './components/RoadmapImporter';
+import TechnologyList from './components/TechnologyList';
 
 function App() {
-  return (
-    <Router>
-      <Navigation />
+  const { technologies, loading, error, refetch } = useTechnologiesApi();
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/technologies" element={<TechnologyList />} />
-        <Route path="/technology/:techId" element={<TechnologyDetail />} />
-        <Route path="/add-technology" element={<AddTechnology />} />
-      </Routes>
-    </Router>
+  if (loading) {
+    return (
+      <div className="app-loading">
+        <div className="spinner"></div>
+        <p>Загрузка технологий...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="app">
+      <header className="app-header">
+        <h1>🚀 Трекер изучения технологий</h1>
+        <button onClick={refetch} className="refresh-btn">
+          Обновить
+        </button>
+      </header>
+
+      {error && (
+        <div className="app-error">
+          <p>{error}</p>
+          <button onClick={refetch}>Попробовать снова</button>
+        </div>
+      )}
+
+      <main className="app-main">
+        <RoadmapImporter />
+        <TechnologyList technologies={technologies} />
+      </main>
+    </div>
   );
 }
 

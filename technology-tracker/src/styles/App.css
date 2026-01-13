@@ -1,0 +1,123 @@
+/* Общие стили приложения */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 10px 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Шапка приложения */
+.app-header {
+  background-color: #3498db;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.refresh-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #2980b9;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.refresh-btn:hover {
+  background-color: #1f618d;
+}
+
+/* Основная часть приложения */
+.app-main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+/* Состояние загрузки */
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1.5s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.app-loading, .app-error {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.app-error p {
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Список технологий */
+.tech-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+/* Технология: карточка (дополнительно для RoadmapImporter) */
+.roadmap-importer button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #27ae60;
+  color: white;
+  cursor: pointer;
+}
+
+.roadmap-importer button:hover {
+  background-color: #1e8449;
+}
+
+/* Страница деталей технологии */
+.technology-detail {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin: 20px 0;
+}
+
+.technology-detail ul {
+  padding-left: 20px;
+}
+
+.technology-detail a {
+  color: #3498db;
+}
+
+.technology-detail a:hover {
+  text-decoration: underline;
+}
