@@ -1,23 +1,35 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navigation from './components/Navigation';
+import React from 'react';
+import './styles/App.css';
 
-import Home from './pages/Home';
-import TechnologyList from './pages/TechnologyList';
-import TechnologyDetail from './pages/TechnologyDetail';
-import AddTechnology from './pages/AddTechnology';
+import TechnologyManager from './components/TechnologyManager';
+import WorkingAccessibleForm from './components/WorkingAccessibleForm';
+import DataImportExport from './components/DataImportExport';
 
 function App() {
   return (
-    <Router>
-      <Navigation />
+    <div className="app">
+      <header className="app-header">
+        <h1>🚀 Трекер технологий - Практика 25</h1>
+      </header>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/technologies" element={<TechnologyList />} />
-        <Route path="/technology/:techId" element={<TechnologyDetail />} />
-        <Route path="/add-technology" element={<AddTechnology />} />
-      </Routes>
-    </Router>
+      <main className="app-main">
+        <section style={{ marginBottom: '40px' }}>
+          <TechnologyManager />
+        </section>
+
+        <section style={{ marginBottom: '40px' }}>
+          <WorkingAccessibleForm />
+        </section>
+
+        <section>
+          <DataImportExport />
+        </section>
+      </main>
+
+      <footer className="app-footer">
+        <p>© 2026 Практика 25 – React формы и экспорт/импорт</p>
+      </footer>
+    </div>
   );
 }
 
