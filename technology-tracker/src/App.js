@@ -1,33 +1,23 @@
-import React, { useState } from 'react';
-import TechnologyCard from './components/TechnologyCard';
-import QuickActions from './components/QuickActions';
-import './App.css';
-import { useTechnologies } from './hooks/useTechnologies';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+
+import Home from './pages/Home';
+import TechnologyList from './pages/TechnologyList';
+import TechnologyDetail from './pages/TechnologyDetail';
+import AddTechnology from './pages/AddTechnology';
 
 function App() {
-  const { technologies, updateStatus, updateNotes } = useTechnologies();
-
   return (
-    <div className="App">
-      <h1>Technology Tracker</h1>
-      {technologies.map((tech) => (
-        <TechnologyCard
-          key={tech.id}
-          technology={tech}
-          onStatusChange={updateStatus}
-          onNotesChange={updateNotes}
-        />
-      ))}
+    <Router>
+      <Navigation />
 
-      {/* QuickActions для первого элемента, только как пример */}
-      {technologies[0] && (
-        <QuickActions
-          technology={technologies[0]}
-          onStatusChange={updateStatus}
-          onNotesChange={updateNotes}
-        />
-      )}
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/technologies" element={<TechnologyList />} />
+        <Route path="/technology/:techId" element={<TechnologyDetail />} />
+        <Route path="/add-technology" element={<AddTechnology />} />
+      </Routes>
+    </Router>
   );
 }
 
